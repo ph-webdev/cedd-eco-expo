@@ -3,6 +3,23 @@
 (function() {
 
 
+// change booth image
+
+const navButtons = document.querySelectorAll(".pc-nav button");
+const boothImgs = document.querySelectorAll(".booth-img");
+navButtons.forEach((button, buttonIndex) => {
+  button.addEventListener("click", () => {
+    const indexToShow = buttonIndex % boothImgs.length;
+    boothImgs.forEach((img, imgIndex) => {
+      if (imgIndex === indexToShow) {
+        img.classList.add("active");
+      } else {
+        img.classList.remove("active");
+      }
+    });
+  });
+});
+
 // handle opening and closing of popouts
 
 const popoutShows = document.querySelectorAll(".popout-show");
