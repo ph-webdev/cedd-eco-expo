@@ -149,26 +149,28 @@ header {
   top: var(--y, 50%);
   left: var(--x, 50%);
   translate: -50% -50%;
-  scale: var(--s, 1);
+  scale: calc(0.25 * var(--s, 1));
   width: 8rem;
   aspect-ratio: 1;
-  border: 0.0625rem solid;
+  border: 0.0625rem solid var(--clr-page-text);
   border-radius: 50%;
   background-color: var(--clr-bubble-bg);
+  color: transparent;
   box-shadow: 0 0 0.5rem var(--clr-bubble-glow);
-  transition: scale 0.2s;
+  transition: color 0.2s, scale 0.2s;
 }
 .popout-show::before {
   content: "";
   position: absolute;
   inset: -0.5rem;
-  border: 0.0625rem solid;
+  border: 0.0625rem solid var(--clr-page-text);
   border-radius: 50%;
   clip-path: polygon(15% 0%, 50% 0%, 50% 100%, 85% 100%);
   rotate: 162deg;
 }
 .popout-show:is(:hover, :focus) {
-  scale: calc(1.25 * var(--s, 1));
+  color: var(--clr-page-text);
+  scale: var(--s, 1);
 }
 .popout {
   position: relative;
