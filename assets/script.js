@@ -26,7 +26,7 @@ const renderHandler = {
     update() {
       this.obj.position.set(this.absolute.x, this.absolute.y, this.absolute.z);
       this.obj.lookAt(this.target);
-    }
+    },
   },
   renderer: new THREE.WebGLRenderer({
     canvas: output,
@@ -68,9 +68,18 @@ renderHandler.init();
 
 // handle booth rotation when clicking buttons
 
+const angles = [ // placeholder angles
+  new THREE.Spherical(6, Math.PI/2, 0),
+  new THREE.Spherical(6, Math.PI/2, Math.PI/8),
+  new THREE.Spherical(6, Math.PI/2, Math.PI/6),
+  new THREE.Spherical(6, Math.PI/2, Math.PI/4),
+  new THREE.Spherical(6, Math.PI/2, Math.PI/2),
+];
 const navButtons = document.querySelectorAll(".pc-nav button");
 navButtons.forEach((button, index) => {
-  // TODO
+  button.addEventListener("click", () => {
+    renderHandler.camera.relative = angles[index];
+  });
 });
 
 // handle opening and closing of popouts
