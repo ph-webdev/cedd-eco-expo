@@ -8,7 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
-  <script defer src="./assets/script.js"></script>
+  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.156.1/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.156.1/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="./assets/script.js"></script>
   <title>CEDD@ Eco Expo</title>
 </head>
 
@@ -29,8 +38,7 @@
 </header>
 
 <main>
-  <img src="./assets/img/booth-1.png" alt="" class="booth-img active">
-  <img src="./assets/img/booth-2.png" alt="" class="booth-img">
+  <canvas id="booth-render"></canvas>
   <button type="button" class="popout-show" data-pid="about"   style="--x: 87.70%; --y: 25.22%; --s: 1.625;">About CEDD</button>
   <button type="button" class="popout-show" data-pid="green"   style="--x: 45.87%; --y: 35.65%; --s: 1.531;">Green Corner</button>
   <button type="button" class="popout-show" data-pid="smart"   style="--x: 15.57%; --y: 27.45%; --s: 1.625;">Smart Tech</button>

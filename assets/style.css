@@ -132,17 +132,12 @@ header {
 
 /* MAIN STYLE STARTS */
 
-.booth-img {
+
+#booth-render {
+  display: block;
   position: fixed;
-  inset: 0;
-  margin: auto;
-  max-width: 100vw;
-  max-height: 100vh;
-  opacity: 0;
-  transition: opacity 1s;
-}
-.booth-img.active {
-  opacity: 1;
+  width: 100%;
+  height: 100%;
 }
 .popout-show {
   position: fixed;
