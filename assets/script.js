@@ -51,6 +51,7 @@ const renderHandler = {
       this.camera.obj.fov = degAtan(degTan(this.camera.hfov / 2) / this.camera.obj.aspect) * 2;
       this.camera.obj.updateProjectionMatrix();
     }
+    this.camera.relative.theta += 0.25 * Math.PI/180; // placeholder animation
     this.camera.update();
     this.renderer.render(this.scene, this.camera.obj);
   },
