@@ -3,7 +3,7 @@
 (function() {
 
 
-// change booth image on scroll and on drag of the scroll button
+// booth images handling setup
 
 const boothImgs = document.querySelectorAll(".booth-img.outer");
 let rotationTracker = 0.5;
@@ -17,11 +17,15 @@ function showBoothImg(indexToShow) {
   })
 }
 
+// change booth image by scrolling
+
 window.addEventListener("wheel", (e) => {
   rotationTracker += (e.deltaY > 0) ? 0.125 : (e.deltaY < 0) ? -0.125 : 0;
   rotationTracker = (rotationTracker + boothImgs.length) % boothImgs.length;
   showBoothImg(Math.floor(rotationTracker));
-})
+});
+
+// change booth image by dragging the scroll button
 
 let initialMouseY;
 const scrollButton = document.querySelector(".scroll-button");
@@ -50,6 +54,10 @@ function dragEnd() {
   scrollButton.classList.remove("scrolling-down");
 }
 scrollButton.addEventListener("mousedown", dragStart);
+
+// change booth image by swipe
+
+// WIP
 
 // handle opening and closing of popouts
 

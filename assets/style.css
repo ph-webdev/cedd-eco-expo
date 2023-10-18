@@ -76,7 +76,7 @@ button {
 @property --gpx4 { syntax: "<percentage>"; inherits: false; initial-value:  40%; }
 @property --gpy4 { syntax: "<percentage>"; inherits: false; initial-value:  60%; }
 body {
-  min-height: 100vh;
+  min-height: 100svh;
   background: /* fallback static gradient */
     radial-gradient(ellipse var(--gsx1) var(--gsy1) at var(--gpx1) var(--gpy1), var(--clr-page-bg2), transparent),
     radial-gradient(ellipse var(--gsx2) var(--gsy2) at var(--gpx2) var(--gpy2), var(--clr-page-bg3), transparent),
