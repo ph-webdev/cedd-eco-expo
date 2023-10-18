@@ -8,16 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
-  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.156.1/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.156.1/examples/jsm/"
-      }
-    }
-  </script>
-  <script type="module" src="./assets/script.js"></script>
+  <script defer src="./assets/script.js"></script>
   <title>CEDD@ Eco Expo</title>
 </head>
 
@@ -38,12 +29,16 @@
 </header>
 
 <main>
-  <canvas id="booth-render"></canvas>
-  <button type="button" class="popout-show" data-pid="about"   style="--x: 87.70%; --y: 25.22%; --s: 1.625;">About CEDD</button>
-  <button type="button" class="popout-show" data-pid="green"   style="--x: 45.87%; --y: 35.65%; --s: 1.531;">Green Corner</button>
-  <button type="button" class="popout-show" data-pid="smart"   style="--x: 15.57%; --y: 27.45%; --s: 1.625;">Smart Tech</button>
-  <button type="button" class="popout-show" data-pid="climate" style="--x: 73.78%; --y: 38.06%; --s: 1.250;">Climate Change</button>
-  <button type="button" class="popout-show" data-pid="contact" style="--x: 19.19%; --y: 81.84%; --s: 1.750;">Contact Us</button>
+  <canvas id="gradient-render"></canvas>
+  <div class="booth-img-container">
+    <img src="./assets/img/booth-1.png" alt="" class="booth-img active">
+    <img src="./assets/img/booth-2.png" alt="" class="booth-img">
+    <button type="button" class="popout-show" data-pid="about"   style="--x: 87.70%; --y: 25.22%; --s: 1.625;">About CEDD</button>
+    <button type="button" class="popout-show" data-pid="green"   style="--x: 45.87%; --y: 35.65%; --s: 1.531;">Green Corner</button>
+    <button type="button" class="popout-show" data-pid="smart"   style="--x: 15.57%; --y: 27.45%; --s: 1.625;">Smart Tech</button>
+    <button type="button" class="popout-show" data-pid="climate" style="--x: 73.78%; --y: 38.06%; --s: 1.250;">Climate Change</button>
+    <button type="button" class="popout-show" data-pid="contact" style="--x: 19.19%; --y: 81.84%; --s: 1.750;">Contact Us</button>
+  </div>
   <dialog class="popout" data-pid="about">
     <video src="" width="960" height="540" style="background-color: white;"></video> <!-- video placeholder -->
     <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
