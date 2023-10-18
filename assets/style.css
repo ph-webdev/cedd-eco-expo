@@ -61,7 +61,7 @@ button {
 }
 body {
   min-height: 100vh;
-  background:
+  background: /* fallback static gradient */
     radial-gradient(ellipse  50% 100% at   0%   0%, var(--clr-page-bg2), transparent),
     radial-gradient(ellipse  50% 100% at 100% 100%, var(--clr-page-bg2), transparent),
     radial-gradient(ellipse  50%  50% at 100%   0%, var(--clr-page-bg3), transparent),
@@ -146,10 +146,12 @@ header {
 }
 .booth-img {
   position: absolute;
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 1s;
+  transition: visibility 1s, opacity 1s;
 }
 .booth-img.active {
+  visibility: visible;
   opacity: 1;
 }
 .popout-show {
