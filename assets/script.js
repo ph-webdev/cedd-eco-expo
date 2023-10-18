@@ -73,7 +73,7 @@ function touchMove(e) {
   for (let i = 0; i < e.changedTouches.length; i++) {
     const touch = e.changedTouches.item(i);
     if (touch.identifier === activeTouchId) {
-      rotationTracker += (touch.clientX - lastTouchX) / swipeStepSize;
+      rotationTracker -= (touch.clientX - lastTouchX) / swipeStepSize;
       showBoothImg();
       lastTouchX = touch.clientX;
     }
