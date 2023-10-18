@@ -59,16 +59,54 @@ button {
   --cvw: clamp(0.5rem, 1vw, 1rem);
   --sqrt2: calc(1/cos(45deg));
 }
+@property --gsx1 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --gsy1 { syntax: "<percentage>"; inherits: false; initial-value:  50%; }
+@property --gpx1 { syntax: "<percentage>"; inherits: false; initial-value:   0%; }
+@property --gpy1 { syntax: "<percentage>"; inherits: false; initial-value:   0%; }
+@property --gsx2 { syntax: "<percentage>"; inherits: false; initial-value:  50%; }
+@property --gsy2 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --gpx2 { syntax: "<percentage>"; inherits: false; initial-value:  60%; }
+@property --gpy2 { syntax: "<percentage>"; inherits: false; initial-value:  40%; }
+@property --gsx3 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --gsy3 { syntax: "<percentage>"; inherits: false; initial-value:  50%; }
+@property --gpx3 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --gpy3 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --gsx4 { syntax: "<percentage>"; inherits: false; initial-value:  50%; }
+@property --gsy4 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --gpx4 { syntax: "<percentage>"; inherits: false; initial-value:  40%; }
+@property --gpy4 { syntax: "<percentage>"; inherits: false; initial-value:  60%; }
 body {
   min-height: 100vh;
   background: /* fallback static gradient */
-    radial-gradient(ellipse  50% 100% at   0%   0%, var(--clr-page-bg2), transparent),
-    radial-gradient(ellipse  50% 100% at 100% 100%, var(--clr-page-bg2), transparent),
-    radial-gradient(ellipse  50%  50% at 100%   0%, var(--clr-page-bg3), transparent),
+    radial-gradient(ellipse var(--gsx1) var(--gsy1) at var(--gpx1) var(--gpy1), var(--clr-page-bg2), transparent),
+    radial-gradient(ellipse var(--gsx2) var(--gsy2) at var(--gpx2) var(--gpy2), var(--clr-page-bg3), transparent),
+    radial-gradient(ellipse var(--gsx3) var(--gsy3) at var(--gpx3) var(--gpy3), var(--clr-page-bg2), transparent),
+    radial-gradient(ellipse var(--gsx4) var(--gsy4) at var(--gpx4) var(--gpy4), var(--clr-page-bg3), transparent),
     var(--clr-page-bg1);
   font-family: "Open Sans", sans-serif;
   color: var(--clr-page-text);
   line-height: 1;
+  animation:
+    ganim1 5s ease-in-out infinite alternate,
+    ganim2 6s ease-in-out infinite alternate,
+    ganim3 7s ease-in-out infinite alternate,
+    ganim4 8s ease-in-out infinite alternate;
+}
+@keyframes ganim1 {
+  from { --gsx1: 100%; --gsy1:  50%; --gpx1:   0%; --gpy1:   0%; }
+  to   { --gsx1:  50%; --gsy1: 100%; --gpx1:  60%; --gpy1:  40%; }
+}
+@keyframes ganim2 {
+  from { --gsx2:  50%; --gsy2: 100%; --gpx2:  60%; --gpy2:  40%; }
+  to   { --gsx2: 100%; --gsy2:  50%; --gpx2: 100%; --gpy2: 100%; }
+}
+@keyframes ganim3 {
+  from { --gsx3: 100%; --gsy3:  50%; --gpx3: 100%; --gpy3: 100%; }
+  to   { --gsx3:  50%; --gsy3: 100%; --gpx3:  40%; --gpy3:  60%; }
+}
+@keyframes ganim4 {
+  from { --gsx4:  50%; --gsy4: 100%; --gpx4:  40%; --gpy4:  60%; }
+  to   { --gsx4: 100%; --gsy4:  50%; --gpx4:   0%; --gpy4:   0%; }
 }
 dialog[open] {
   animation: fadein 0.4s;
@@ -132,12 +170,6 @@ header {
 
 /* MAIN STYLE STARTS */
 
-#gradient-render {
-  display: block;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-}
 .booth-img-container {
   position: fixed;
   inset: 0;
