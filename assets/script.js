@@ -23,19 +23,31 @@ window.addEventListener("wheel", (e) => {
   showBoothImg(Math.floor(rotationTracker));
 })
 
+let initialMouseY;
 const scrollButton = document.querySelector(".scroll-button");
-function dragStart() {
+function dragStart(e) {
   window.addEventListener("mousemove", dragMove);
   window.addEventListener("mouseup", dragEnd);
+  initialMouseY = e.clientY;
 }
 function dragMove(e) {
   rotationTracker += e.movementY / 64;
   rotationTracker = (rotationTracker + boothImgs.length) % boothImgs.length;
   showBoothImg(Math.floor(rotationTracker));
+  if (e.clientY > initialMouseY) {
+    scrollButton.classList.remove("scrolling-up");
+    scrollButton.classList.add("scrolling-down");
+  }
+  if (e.clientY < initialMouseY) {
+    scrollButton.classList.remove("scrolling-down");
+    scrollButton.classList.add("scrolling-up");
+  }
 }
 function dragEnd() {
   window.removeEventListener("mousemove", dragMove);
   window.removeEventListener("mouseup", dragEnd);
+  scrollButton.classList.remove("scrolling-up");
+  scrollButton.classList.remove("scrolling-down");
 }
 scrollButton.addEventListener("mousedown", dragStart);
 

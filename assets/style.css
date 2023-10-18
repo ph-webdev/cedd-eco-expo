@@ -217,11 +217,18 @@ header {
   rotate: 90deg;
   transform-origin: calc(100% - 1.5625rem) center;
 }
-.scroll-button::after {
+.scroll-button::before, .scroll-button::after {
   content: "";
-  width: 7rem;
+  width: 3rem;
   height: 0.0625rem;
   background-color: currentColor;
+  transition: width 0.2s;
+}
+.scroll-button.scrolling-up::before, .scroll-button.scrolling-down::after {
+  width: 1rem;
+}
+.scroll-button.scrolling-up::after, .scroll-button.scrolling-down::before {
+  width: 5rem;
 }
 
 /* MAIN STYLE ENDS */
