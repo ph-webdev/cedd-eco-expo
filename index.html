@@ -16,56 +16,58 @@
 <body>
 
 <header>
-  <img src="./assets/img/logo.svg" alt="" class="logo">
+  <img src="./assets/img/logo-cedd.svg" alt="" class="logo">
   <nav class="pc-nav pc-only">
     <ul>
-      <li><button type="button">About CEDD@ Eco Expo</button></li>
-      <li><button type="button">Green Corner</button></li>
-      <li><button type="button">Smart Tech</button></li>
-      <li><button type="button">Climate Change</button></li>
-      <li><button type="button">Contact Us</button></li>
+      <li><a href="#">CEDD@ Eco Expo Asia 2024</a></li>
+      <li><a href="#">Eco-Design</a></li>
+      <li><a href="#">Smart Technology</a></li>
+      <li><a href="#">Climate Change & Extreme Weather</a></li>
+      <li><a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank">Contact Us</a></li>
+      <li class="dropdown lang-dropdown">
+        <button type="button" class="dropdown-button lang-dropdown-button">EN</button>
+        <div class="dropdown-content lang-dropdown-content">
+          <button type="button">中</button>
+          <button type="button">EN</button>
+        </div>
+      </li>
     </ul>
   </nav>
 </header>
 
 <main>
-  <div class="booth-img-container">
-    <img src="./assets/img/booth-00.png" alt="" class="booth-img outer active">
-    <img src="./assets/img/booth-01.png" alt="" class="booth-img outer">
-    <img src="./assets/img/booth-02.png" alt="" class="booth-img outer">
-    <img src="./assets/img/booth-03.png" alt="" class="booth-img outer">
-    <img src="./assets/img/booth-04.png" alt="" class="booth-img outer">
-    <img src="./assets/img/booth-05.png" alt="" class="booth-img outer">
-    <img src="./assets/img/booth-inner01.png" alt="" class="booth-img inner">
-    <img src="./assets/img/booth-inner02.png" alt="" class="booth-img inner">
-    <img src="./assets/img/booth-inner03.png" alt="" class="booth-img inner">
-    <button type="button" class="popout-show" data-pid="about"   style="--x: 87.70%; --y: 25.22%; --s: 1.625;">About CEDD</button>
-    <button type="button" class="popout-show" data-pid="green"   style="--x: 45.87%; --y: 35.65%; --s: 1.531;">Green Corner</button>
-    <button type="button" class="popout-show" data-pid="smart"   style="--x: 15.57%; --y: 27.45%; --s: 1.625;">Smart Tech</button>
-    <button type="button" class="popout-show" data-pid="climate" style="--x: 73.78%; --y: 38.06%; --s: 1.250;">Climate Change</button>
-    <button type="button" class="popout-show" data-pid="contact" style="--x: 19.19%; --y: 81.84%; --s: 1.750;">Contact Us</button>
+  <div class="booth-view-container">
+    <div class="booth-view active">
+      <img src="./assets/img/booth-00.png" alt="">
+      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 87.70%; --y: 25.22%; --s: 1.625;">text</button>
+      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 45.87%; --y: 35.65%; --s: 1.500;">text</button>
+      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 15.57%; --y: 27.45%; --s: 1.625;">text</button>
+      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 73.78%; --y: 38.06%; --s: 1.250;">text</button>
+      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 19.19%; --y: 81.84%; --s: 1.750;">text</button>
+    </div>
+    <div class="booth-view">
+      <img src="./assets/img/booth-01.png" alt="">
+    </div>
+    <div class="booth-view">
+      <img src="./assets/img/booth-02.png" alt="">
+    </div>
+    <div class="booth-view">
+      <img src="./assets/img/booth-03.png" alt="">
+    </div>
+    <div class="booth-view">
+      <img src="./assets/img/booth-04.png" alt="">
+    </div>
+    <div class="booth-view">
+      <img src="./assets/img/booth-05.png" alt="">
+    </div>
   </div>
-  <dialog class="popout" data-pid="about">
+  <div class="pc-only">
+    <button type="button" class="scroll-button">Scroll</button>
+  </div>
+  <dialog class="popout" data-pid="placeholder">
     <video src="" width="960" height="540" style="background-color: white;"></video> <!-- video placeholder -->
     <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
   </dialog>
-  <dialog class="popout" data-pid="green">
-    <video src="" width="960" height="540" style="background-color: green;"></video> <!-- video placeholder -->
-    <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
-  </dialog>
-  <dialog class="popout" data-pid="smart">
-    <video src="" width="960" height="540" style="background-color: blue;"></video> <!-- video placeholder -->
-    <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
-  </dialog>
-  <dialog class="popout" data-pid="climate">
-    <video src="" width="960" height="540" style="background-color: red;"></video> <!-- video placeholder -->
-    <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
-  </dialog>
-  <dialog class="popout" data-pid="contact">
-    <video src="" width="960" height="540" style="background-color: black;"></video> <!-- video placeholder -->
-    <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
-  </dialog>
-  <button type="button" class="scroll-button">Scroll</button>
 </main>
 
 </body>

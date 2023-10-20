@@ -115,6 +115,21 @@ dialog[open] {
   from { visibility: hidden;  opacity: 0; }
   to   { visibility: visible; opacity: 1; }
 }
+.dropdown {
+  position: relative;
+}
+.dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.2s;
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+.dropdown:where(:hover, :focus-within) .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+}
 
 /* GENERAL STYLE ENDS */
 
@@ -123,7 +138,7 @@ dialog[open] {
 .pc-only {
   display: none !important;
 }
-@media (min-width: 48rem) {
+@media (min-width: 60rem) {
   .sp-only {
     display: none !important;
   }
@@ -148,6 +163,7 @@ header {
   padding-block: 2rem;
 }
 .logo {
+  width: calc(8*var(--cvw));
   margin-left: calc(4*var(--cvw));
 }
 .pc-nav {
@@ -155,34 +171,42 @@ header {
 }
 .pc-nav ul {
   display: flex;
-  gap: calc(2*var(--cvw));
-  padding: 0.75rem calc(4*var(--cvw)) 0.75rem calc(8*var(--cvw));
+  padding: 0 calc(2*var(--cvw)) 0 calc(4*var(--cvw));
   background-image: linear-gradient(90deg, transparent, var(--clr-nav-bg));
 }
-.pc-nav button {
+.pc-nav :is(a, button) {
+  display: inline-block;
+  padding: var(--cvw);
   transition: color 0.2s;
 }
-.pc-nav button:where(:hover, :focus-visible) {
+.pc-nav :is(a, button):where(:hover, :focus-visible) {
   color: var(--clr-link-hover);
+}
+.pc-nav .lang-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-nav-bg);
 }
 
 /* HEADER STYLE ENDS */
 
 /* MAIN STYLE STARTS */
 
-.booth-img-container {
+.booth-view-container {
   position: fixed;
   inset: 0;
   margin: auto;
+  max-width: 100vw;
+  max-height: 100vh;
   aspect-ratio: 16 / 9;
 }
-.booth-img {
+.booth-view {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 1s, opacity 1s;
+  transition: visibility 0.4s, opacity 0.4s;
 }
-.booth-img.active {
+.booth-view.active {
   visibility: visible;
   opacity: 1;
 }
@@ -214,25 +238,6 @@ header {
   color: var(--clr-page-text);
   scale: var(--s, 1);
 }
-.popout {
-  position: relative;
-  padding: 3rem 4rem;
-  background-image: linear-gradient(
-    135deg,
-    transparent 0 calc(2rem*var(--sqrt2)),
-    var(--clr-popout-bg) calc(2rem*var(--sqrt2)) calc(100% - 2rem*var(--sqrt2)),
-    transparent calc(100% - 2rem*var(--sqrt2)) 100%
-  );
-}
-.popout-hide {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  transition: scale 0.2s;
-}
-.popout-hide:is(:hover, :focus-visible) {
-  scale: 1.5;
-}
 .scroll-button {
   position: fixed;
   bottom: 4rem;
@@ -256,11 +261,32 @@ header {
   background-color: currentColor;
   transition: width 0.2s;
 }
-.scroll-button.scrolling-up::before, .scroll-button.scrolling-down::after {
+.scroll-button.scrolling-up::before,
+.scroll-button.scrolling-down::after {
   width: 1rem;
 }
-.scroll-button.scrolling-up::after, .scroll-button.scrolling-down::before {
+.scroll-button.scrolling-up::after,
+.scroll-button.scrolling-down::before {
   width: 5rem;
+}
+.popout {
+  position: relative;
+  padding: 3rem 4rem;
+  background-image: linear-gradient(
+    135deg,
+    transparent 0 calc(2rem*var(--sqrt2)),
+    var(--clr-popout-bg) calc(2rem*var(--sqrt2)) calc(100% - 2rem*var(--sqrt2)),
+    transparent calc(100% - 2rem*var(--sqrt2)) 100%
+  );
+}
+.popout-hide {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  transition: scale 0.2s;
+}
+.popout-hide:is(:hover, :focus-visible) {
+  scale: 1.5;
 }
 
 /* MAIN STYLE ENDS */

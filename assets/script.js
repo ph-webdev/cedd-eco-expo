@@ -5,12 +5,12 @@
 
 // booth views handling setup
 
-const boothImgs = document.querySelectorAll(".booth-img.outer");
+const boothViews = document.querySelectorAll(".booth-view");
 let rotationTracker = 0.5;
-function showBoothImg() {
-  rotationTracker = (rotationTracker + boothImgs.length) % boothImgs.length;
+function showBoothView() {
+  rotationTracker = (rotationTracker + boothViews.length) % boothViews.length;
   const indexToShow = Math.floor(rotationTracker);
-  boothImgs.forEach((img, imgIndex) => {
+  boothViews.forEach((img, imgIndex) => {
     if (imgIndex === indexToShow) {
       img.classList.add("active");
     } else {
@@ -24,29 +24,56 @@ function showBoothImg() {
 const scrollStepSize = document.body.offsetHeight / 4;
 window.addEventListener("wheel", (e) => {
   rotationTracker += e.deltaY / scrollStepSize;
-  showBoothImg();
+  showBoothView();
 });
 
 // change booth view by dragging the scroll button
 
 const scrollButton = document.querySelector(".scroll-button");
+let isDragging = false;
 let initialMouseY;
-const dragStepSize = scrollButton.offsetWidth / 4;
+let dragDirection = 0;
+let switchReady = true;
+const dragThreshold = scrollButton.offsetWidth / 8;
 function dragStart(e) {
   window.addEventListener("mousemove", dragMove);
   window.addEventListener("mouseup", dragEnd);
+  isDragging = true;
   initialMouseY = e.clientY;
 }
 function dragMove(e) {
-  rotationTracker += e.movementY / dragStepSize;
-  showBoothImg();
-  if (e.clientY > initialMouseY) {
-    scrollButton.classList.remove("scrolling-up");
+  dragDirection = 0;
+  scrollButton.classList.remove("scrolling-up");
+  scrollButton.classList.remove("scrolling-down");
+  if (e.clientY > initialMouseY + dragThreshold) {
+    dragDirection = 1;
+    dragSwitch();
     scrollButton.classList.add("scrolling-down");
   }
-  if (e.clientY < initialMouseY) {
-    scrollButton.classList.remove("scrolling-down");
+  if (e.clientY < initialMouseY - dragThreshold) {
+    dragDirection = -1;
+    dragSwitch();
     scrollButton.classList.add("scrolling-up");
+  }
+}
+function dragSwitch() {
+  if (!switchReady || dragDirection === 0) return;
+  if (dragDirection === 1) {
+    switchReady = false;
+    rotationTracker++;
+    showBoothView();
+    setTimeout(() => {
+      switchReady = true;
+      dragSwitch();
+    }, 1000);
+  } else if (dragDirection === -1) {
+    switchReady = false;
+    rotationTracker--;
+    showBoothView();
+    setTimeout(() => {
+      switchReady = true;
+      dragSwitch();
+    }, 1000);
   }
 }
 function dragEnd() {
@@ -54,6 +81,8 @@ function dragEnd() {
   window.removeEventListener("mouseup", dragEnd);
   scrollButton.classList.remove("scrolling-up");
   scrollButton.classList.remove("scrolling-down");
+  isDragging = false;
+  dragDirection = 0;
 }
 scrollButton.addEventListener("mousedown", dragStart);
 
@@ -74,7 +103,7 @@ function touchMove(e) {
     const touch = e.changedTouches.item(i);
     if (touch.identifier === activeTouchId) {
       rotationTracker -= (touch.clientX - lastTouchX) / swipeStepSize;
-      showBoothImg();
+      showBoothView();
       lastTouchX = touch.clientX;
     }
   }
