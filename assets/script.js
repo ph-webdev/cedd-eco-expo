@@ -3,6 +3,38 @@
 (function() {
 
 
+// language switch
+
+const localeStrings = {
+  "en": {
+    "nav-about": "CEDD@ Eco Expo Asia 2024",
+    "nav-eco": "Eco-Design",
+    "nav-smart": "Smart Technology",
+    "nav-climate": "Climate Change & Extreme Weather",
+    "nav-contact": "Contact Us",
+    "nav-currentLang": "ENG",
+  },
+  "zh-hk": {
+    "nav-about": "關於CEDD國際環保博覽2024",
+    "nav-eco": "環保設計",
+    "nav-smart": "環保設計",
+    "nav-climate": "氣候變化與極端天氣",
+    "nav-contact": "聯繫我們",
+    "nav-currentLang": "中文",
+  },
+};
+function setLang(lang) {
+  document.querySelectorAll(".locale").forEach((el) => {
+    const string = el.dataset.string;
+    el.textContent = localeStrings[lang][string];
+  });
+}
+
+document.querySelector("#lang-zh-hk").addEventListener("click", () => setLang("zh-hk"));
+document.querySelector("#lang-en").addEventListener("click", () => setLang("en"));
+
+setLang("en");
+
 // booth views handling setup
 
 const boothViews = document.querySelectorAll(".booth-view");
