@@ -3,7 +3,7 @@
 export const localeStrings = {
   "en": {
     "nav-currentLang": "EN",
-    "nav-about": "CEDD@ Eco Expo Asia 2024",
+    "nav-about": "CEDD@ Eco Expo Asia 2023",
     "nav-eco": "Eco-Design",
     "nav-smart": "Smart Technology",
     "nav-climate": "Climate Change & Extreme Weather",
@@ -17,7 +17,7 @@ export const localeStrings = {
   },
   "zh-hk": {
     "nav-currentLang": "繁",
-    "nav-about": "關於CEDD國際環保博覽2024",
+    "nav-about": "關於CEDD國際環保博覽2023",
     "nav-eco": "環保設計",
     "nav-smart": "創新科技",
     "nav-climate": "氣候變化與極端天氣",
@@ -31,7 +31,7 @@ export const localeStrings = {
   },
   "zh-cn": {
     "nav-currentLang": "简",
-    "nav-about": "关于CEDD国际环保博览2024",
+    "nav-about": "关于CEDD国际环保博览2023",
     "nav-eco": "环保设计",
     "nav-smart": "创新科技",
     "nav-climate": "气候变化与极端天气",
