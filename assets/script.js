@@ -21,6 +21,11 @@ function setLang(lang) {
     const string = el.dataset.string;
     el.innerHTML = localeStrings[lang][string];
   });
+  document.querySelectorAll(".locale-attr").forEach((el) => {
+    const attr = el.dataset.attr;
+    const string = el.dataset.string;
+    el.setAttribute(attr, localeStrings[lang][string]);
+  });
 }
 
 document.querySelectorAll(".lang-en").forEach((el) => {

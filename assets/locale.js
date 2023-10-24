@@ -14,6 +14,7 @@ export const localeStrings = {
     "bubble-climate": "Climate Change",
     "bubble-wave": "Wave Tank Model",
     "bubble-contact": "Contact Us",
+    "href-about": "https://www.youtube.com/watch?v=Riy3viv02Qs",
   },
   "zh-hk": {
     "nav-currentLang": "繁",
@@ -28,6 +29,7 @@ export const localeStrings = {
     "bubble-climate": "氣候變化",
     "bubble-wave": "海浪模型",
     "bubble-contact": "聯繫我們",
+    "href-about": "https://www.youtube.com/watch?v=IZJ2uj5lflA",
   },
   "zh-cn": {
     "nav-currentLang": "简",
@@ -42,5 +44,6 @@ export const localeStrings = {
     "bubble-climate": "气候变化",
     "bubble-wave": "海浪模型",
     "bubble-contact": "联系我们",
+    "href-about": "https://www.youtube.com/watch?v=IZJ2uj5lflA",
   },
 };
