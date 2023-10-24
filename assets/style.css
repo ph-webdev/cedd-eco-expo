@@ -48,16 +48,18 @@ button {
   --clr-page-bg2: hsl(198 100% 80%);
   --clr-page-bg3: hsl(198 80% 40%);
   --clr-page-text: #ffffff;
-  --clr-nav-bg: #ffffff33;
-  --clr-link-hover: #2792c3;
+  --clr-pc-nav-bg: #ffffff33;
+  --clr-pc-nav-link-hover: #2792c3;
+  --clr-sp-nav-bg: #ffffffe5;
+  --clr-sp-nav-link: #2b2b2b;
+  --clr-sp-nav-lang: #3b9db5;
   --clr-bubble-bg: #6060605f;
   --clr-bubble-glow: #ffffff7f;
-  --clr-popout-bg: #ffffffb2;
-  --clr-scrollbutton-bg1: #2792c366;
-  --clr-scrollbutton-bg2: #26d8c366;
-  --ckr-scrollbutton-glow: #ffffff3f;
+  --clr-scroll-button-bg1: #2792c366;
+  --clr-scroll-button-bg2: #26d8c366;
+  --clr-swipe-indicator-bg1: #3f82a3;
+  --clr-swipe-indicator-bg2: #88eaff;
   --cvw: clamp(0.5rem, 1vw, 1rem);
-  --sqrt2: calc(1/cos(45deg));
 }
 @property --gsx1 { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
 @property --gsy1 { syntax: "<percentage>"; inherits: false; initial-value:  50%; }
@@ -77,13 +79,13 @@ button {
 @property --gpy4 { syntax: "<percentage>"; inherits: false; initial-value:  60%; }
 body {
   min-height: 100svh;
-  background: /* fallback static gradient */
+  background:
     radial-gradient(ellipse var(--gsx1) var(--gsy1) at var(--gpx1) var(--gpy1), var(--clr-page-bg2), transparent),
     radial-gradient(ellipse var(--gsx2) var(--gsy2) at var(--gpx2) var(--gpy2), var(--clr-page-bg3), transparent),
     radial-gradient(ellipse var(--gsx3) var(--gsy3) at var(--gpx3) var(--gpy3), var(--clr-page-bg2), transparent),
     radial-gradient(ellipse var(--gsx4) var(--gsy4) at var(--gpx4) var(--gpy4), var(--clr-page-bg3), transparent),
     var(--clr-page-bg1);
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "Microsoft JhengHei", sans-serif;
   color: var(--clr-page-text);
   line-height: 1;
   animation:
@@ -172,7 +174,7 @@ header {
 .pc-nav ul {
   display: flex;
   padding: 0 calc(2*var(--cvw)) 0 calc(4*var(--cvw));
-  background-image: linear-gradient(90deg, transparent, var(--clr-nav-bg));
+  background-image: linear-gradient(90deg, transparent, var(--clr-pc-nav-bg));
 }
 .pc-nav :is(a, button) {
   display: inline-block;
@@ -180,28 +182,67 @@ header {
   transition: color 0.2s;
 }
 .pc-nav :is(a, button):where(:hover, :focus-visible) {
-  color: var(--clr-link-hover);
+  color: var(--clr-pc-nav-link-hover);
 }
 .pc-nav .lang-dropdown-content {
   display: flex;
   flex-direction: column;
-  background-color: var(--clr-nav-bg);
+  background-color: var(--clr-pc-nav-bg);
+}
+.sp-nav {
+  margin-right: calc(2*var(--cvw));
+}
+.sp-nav .sp-nav-menu[open] {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 85vw;
+  height: 65vh;
+  margin-top: 10vh;
+  background-color: var(--clr-sp-nav-bg);
+  clip-path: polygon(0% 12.5%, 12.5% 0%, 100% 0%, 100% 87.5%, 87.5% 100%, 0% 100%);
+}
+.sp-nav .sp-nav-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+.sp-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 50vw;
+}
+.sp-nav a {
+  color: var(--clr-sp-nav-link);
+}
+.sp-nav .lang-list {
+  display: flex;
+  gap: 0.75rem;
+}
+.sp-nav .lang-list button {
+  color: var(--clr-sp-nav-lang);
+  font-weight: bold;
 }
 
 /* HEADER STYLE ENDS */
 
 /* MAIN STYLE STARTS */
 
+main {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  min-height: 100vh;
+}
 .booth-view-container {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  max-width: 100vw;
-  max-height: 100vh;
-  aspect-ratio: 16 / 9;
+  position: relative;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
 }
 .booth-view {
   position: absolute;
+  inset: 0;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.4s, opacity 0.4s;
@@ -210,22 +251,25 @@ header {
   visibility: visible;
   opacity: 1;
 }
-.popout-show {
+.link-bubble {
   position: absolute;
   top: var(--y, 50%);
   left: var(--x, 50%);
   translate: -50% -50%;
   scale: calc(0.25 * var(--s, 1));
+  display: grid;
+  place-items: center;
   width: 8rem;
   aspect-ratio: 1;
   border: 0.0625rem solid var(--clr-page-text);
   border-radius: 50%;
   background-color: var(--clr-bubble-bg);
   color: transparent;
+  text-align: center;
   box-shadow: 0 0 0.5rem var(--clr-bubble-glow);
   transition: color 0.2s, scale 0.2s;
 }
-.popout-show::before {
+.link-bubble::before {
   content: "";
   position: absolute;
   inset: -0.5rem;
@@ -234,11 +278,11 @@ header {
   clip-path: polygon(15% 0%, 50% 0%, 50% 100%, 85% 100%);
   rotate: 162deg;
 }
-.popout-show:is(:hover, :focus-visible) {
+.link-bubble:is(:hover, :focus-visible) {
   color: var(--clr-page-text);
   scale: var(--s, 1);
 }
-.scroll-button {
+.pc-scroll-button {
   position: fixed;
   bottom: 4rem;
   right: 2rem;
@@ -246,7 +290,7 @@ header {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 3.5rem;
-  background-image: linear-gradient(90deg, var(--clr-scrollbutton-bg1), var(--clr-scrollbutton-bg2));
+  background-image: linear-gradient(90deg, var(--clr-scroll-button-bg1), var(--clr-scroll-button-bg2));
   border: 0.0625rem solid;
   border-radius: 1.25rem;
   font-weight: 800;
@@ -254,39 +298,89 @@ header {
   rotate: 90deg;
   transform-origin: calc(100% - 1.5625rem) center;
 }
-.scroll-button::before, .scroll-button::after {
+.pc-scroll-button::before, .pc-scroll-button::after {
   content: "";
   width: 3rem;
   height: 0.0625rem;
   background-color: currentColor;
   transition: width 0.2s;
 }
-.scroll-button.scrolling-up::before,
-.scroll-button.scrolling-down::after {
+.pc-scroll-button.scrolling-up::before,
+.pc-scroll-button.scrolling-down::after {
   width: 1rem;
 }
-.scroll-button.scrolling-up::after,
-.scroll-button.scrolling-down::before {
+.pc-scroll-button.scrolling-up::after,
+.pc-scroll-button.scrolling-down::before {
   width: 5rem;
 }
-.popout {
+.sp-swipe-indicator-container {
+  width: 16rem;
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+}
+.sp-swipe-indicator-container span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.5rem;
+  text-transform: uppercase;
+}
+.sp-swipe-indicator-container .arrows {
+  display: flex;
+  justify-content: space-between;
+  width: 7rem;
+  margin: 0.25rem auto;
+}
+.sp-swipe-indicator {
   position: relative;
-  padding: 3rem 4rem;
-  background-image: linear-gradient(
-    135deg,
-    transparent 0 calc(2rem*var(--sqrt2)),
-    var(--clr-popout-bg) calc(2rem*var(--sqrt2)) calc(100% - 2rem*var(--sqrt2)),
-    transparent calc(100% - 2rem*var(--sqrt2)) 100%
+  height: 3rem;
+  overflow-x: hidden;
+}
+.sp-swipe-indicator > * {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+.sp-swipe-indicator .belt {
+  width: 200%;
+  margin-left: -50%;
+  height: 0.5rem;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--clr-page-text) 0 1px,
+    transparent 1px 1.25%
   );
 }
-.popout-hide {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+.sp-swipe-indicator .dot {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--clr-page-text);
+  border: 0.0625rem solid var(--clr-page-text);
+  border-radius: 50%;
+  scale: 0.5;
   transition: scale 0.2s;
 }
-.popout-hide:is(:hover, :focus-visible) {
-  scale: 1.5;
+.sp-swipe-indicator .dot.active {
+  scale: none;
+  background-image: linear-gradient(180deg, var(--clr-swipe-indicator-bg1), var(--clr-swipe-indicator-bg2));
+}
+.sp-swipe-indicator .circle {
+  height: 100%;
+  aspect-ratio: 1;
+  border: 0.0625rem solid var(--clr-page-text);
+  border-radius: 50%;
 }
 
 /* MAIN STYLE ENDS */
+
+/* FOOTER STYLE STARTS */
+
+.copy {
+  position: fixed;
+  bottom: var(--cvw);
+  left: var(--cvw);
+  right: var(--cvw);
+  font-size: 0.75rem;
+}
+
+/* FOOTER STYLE ENDS */

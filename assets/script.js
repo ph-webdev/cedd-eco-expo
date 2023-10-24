@@ -1,37 +1,37 @@
 "use strict";
+import { localeStrings } from "./locale.js";
 
 (function() {
 
 
+// mobile navigation menu
+
+document.querySelector(".sp-nav-open").addEventListener("click", () => {
+  document.querySelector(".sp-nav-menu").showModal();
+});
+document.querySelector(".sp-nav-close").addEventListener("click", () => {
+  document.querySelector(".sp-nav-menu").close();
+});
+
 // language switch
 
-const localeStrings = {
-  "en": {
-    "nav-about": "CEDD@ Eco Expo Asia 2024",
-    "nav-eco": "Eco-Design",
-    "nav-smart": "Smart Technology",
-    "nav-climate": "Climate Change & Extreme Weather",
-    "nav-contact": "Contact Us",
-    "nav-currentLang": "ENG",
-  },
-  "zh-hk": {
-    "nav-about": "關於CEDD國際環保博覽2024",
-    "nav-eco": "環保設計",
-    "nav-smart": "環保設計",
-    "nav-climate": "氣候變化與極端天氣",
-    "nav-contact": "聯繫我們",
-    "nav-currentLang": "中文",
-  },
-};
 function setLang(lang) {
+  document.documentElement.lang = lang;
   document.querySelectorAll(".locale").forEach((el) => {
     const string = el.dataset.string;
-    el.textContent = localeStrings[lang][string];
+    el.innerHTML = localeStrings[lang][string];
   });
 }
 
-document.querySelector("#lang-zh-hk").addEventListener("click", () => setLang("zh-hk"));
-document.querySelector("#lang-en").addEventListener("click", () => setLang("en"));
+document.querySelectorAll(".lang-en").forEach((el) => {
+  el.addEventListener("click", () => setLang("en"));
+});
+document.querySelectorAll(".lang-zh-hk").forEach((el) => {
+  el.addEventListener("click", () => setLang("zh-hk"));
+});
+document.querySelectorAll(".lang-zh-cn").forEach((el) => {
+  el.addEventListener("click", () => setLang("zh-cn"));
+});
 
 setLang("en");
 
@@ -40,6 +40,7 @@ setLang("en");
 const boothViews = document.querySelectorAll(".booth-view");
 let rotationTracker = 0.5;
 function showBoothView() {
+
   rotationTracker = (rotationTracker + boothViews.length) % boothViews.length;
   const indexToShow = Math.floor(rotationTracker);
   boothViews.forEach((img, imgIndex) => {
@@ -48,8 +49,30 @@ function showBoothView() {
     } else {
       img.classList.remove("active");
     }
-  })
+  });
+
+  // swipe indicator
+  const belt = document.querySelector(".sp-swipe-indicator .belt");
+  const beltPosition = -(rotationTracker - Math.floor(rotationTracker)) + 0.5;
+  belt.style.translate = `${beltPosition * belt.offsetWidth / 6}px 0`;
+  const dots = document.querySelectorAll(".sp-swipe-indicator .dot");
+  dots.forEach((dot, dotIndex) => {
+    if (dotIndex === indexToShow) {
+      dot.classList.add("active")
+    } else {
+      dot.classList.remove("active");
+    }
+    let dotPosition = dotIndex + 0.5 - rotationTracker;
+    if (dotPosition < -boothViews.length / 2) {
+      dotPosition += boothViews.length;
+    } else if (dotPosition > boothViews.length / 2) {
+      dotPosition -= boothViews.length;
+    }
+    dot.style.translate = `${dotPosition * belt.offsetWidth / 6}px 0`;
+  });
+
 }
+showBoothView();
 
 // change booth view by scrolling
 
@@ -61,31 +84,29 @@ window.addEventListener("wheel", (e) => {
 
 // change booth view by dragging the scroll button
 
-const scrollButton = document.querySelector(".scroll-button");
-let isDragging = false;
+const pcScrollButton = document.querySelector(".pc-scroll-button");
 let initialMouseY;
 let dragDirection = 0;
 let switchReady = true;
-const dragThreshold = scrollButton.offsetWidth / 8;
+const dragThreshold = pcScrollButton.offsetWidth / 8;
 function dragStart(e) {
   window.addEventListener("mousemove", dragMove);
   window.addEventListener("mouseup", dragEnd);
-  isDragging = true;
   initialMouseY = e.clientY;
 }
 function dragMove(e) {
   dragDirection = 0;
-  scrollButton.classList.remove("scrolling-up");
-  scrollButton.classList.remove("scrolling-down");
+  pcScrollButton.classList.remove("scrolling-up");
+  pcScrollButton.classList.remove("scrolling-down");
   if (e.clientY > initialMouseY + dragThreshold) {
     dragDirection = 1;
     dragSwitch();
-    scrollButton.classList.add("scrolling-down");
+    pcScrollButton.classList.add("scrolling-down");
   }
   if (e.clientY < initialMouseY - dragThreshold) {
     dragDirection = -1;
     dragSwitch();
-    scrollButton.classList.add("scrolling-up");
+    pcScrollButton.classList.add("scrolling-up");
   }
 }
 function dragSwitch() {
@@ -111,12 +132,11 @@ function dragSwitch() {
 function dragEnd() {
   window.removeEventListener("mousemove", dragMove);
   window.removeEventListener("mouseup", dragEnd);
-  scrollButton.classList.remove("scrolling-up");
-  scrollButton.classList.remove("scrolling-down");
-  isDragging = false;
+  pcScrollButton.classList.remove("scrolling-up");
+  pcScrollButton.classList.remove("scrolling-down");
   dragDirection = 0;
 }
-scrollButton.addEventListener("mousedown", dragStart);
+pcScrollButton.addEventListener("mousedown", dragStart);
 
 // change booth view by swiping
 
@@ -146,6 +166,8 @@ function touchEnd(e) {
     const touch = e.changedTouches.item(i);
     if (touch.identifier === activeTouchId) {
       activeTouchId = null;
+      rotationTracker = Math.floor(rotationTracker) + 0.5;
+      showBoothView();
       break;
     }
   }
@@ -154,23 +176,6 @@ window.addEventListener("touchstart", touchStart);
 window.addEventListener("touchmove", (e) => { e.preventDefault(); touchMove(e); }, {passive: false});
 window.addEventListener("touchend", touchEnd);
 window.addEventListener("touchcancel", touchEnd);
-
-// handle opening and closing of popouts
-
-const popoutShows = document.querySelectorAll(".popout-show");
-const popoutHides = document.querySelectorAll(".popout-hide");
-for (let ps of popoutShows) {
-  ps.addEventListener("click", () => {
-    const popout = document.querySelector(`.popout[data-pid="${ps.dataset.pid}"]`);
-    popout.showModal();
-  });
-}
-for (let ph of popoutHides) {
-  ph.addEventListener("click", () => {
-    const popout = ph.closest(".popout");
-    popout.close();
-  });
-}
 
 
 })();

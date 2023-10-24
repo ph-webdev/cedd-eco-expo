@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
-  <script defer src="./assets/script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script type="module" src="./assets/script.js"></script>
   <title>CEDD@ Eco Expo</title>
 </head>
 
@@ -19,19 +18,38 @@
   <img src="./assets/img/logo-cedd.svg" alt="" class="logo">
   <nav class="pc-nav pc-only">
     <ul>
-      <li><a href="#"><span class="locale" data-string="nav-about"></span></a></li>
-      <li><a href="#"><span class="locale" data-string="nav-eco"></span></a></li>
-      <li><a href="#"><span class="locale" data-string="nav-smart"></span></a></li>
-      <li><a href="#"><span class="locale" data-string="nav-climate"></span></a></li>
+      <li><a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank"><span class="locale" data-string="nav-about"></span></a></li>
+      <li><a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank"><span class="locale" data-string="nav-eco"></span></a></li>
+      <li><a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank"><span class="locale" data-string="nav-smart"></span></a></li>
+      <li><a href="./assets/pdf/Climate_Panel08.pdf" target="_blank"><span class="locale" data-string="nav-climate"></span></a></li>
       <li><a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank"><span class="locale" data-string="nav-contact"></span></a></li>
       <li class="dropdown lang-dropdown">
         <button type="button" class="dropdown-button lang-dropdown-button"><span class="locale" data-string="nav-currentLang"></span></button>
         <div class="dropdown-content lang-dropdown-content">
-          <button type="button" id="lang-zh-hk">中文</button>
-          <button type="button" id="lang-en">ENG</button>
+          <button type="button" class="lang-en">EN</button>
+          <button type="button" class="lang-zh-hk">繁</button>
+          <button type="button" class="lang-zh-cn">简</button>
         </div>
       </li>
     </ul>
+  </nav>
+  <nav class="sp-nav sp-only">
+    <button type="button" class="sp-nav-open"><img src="./assets/img/button-menu.svg" alt=""></button>
+    <dialog class="sp-nav-menu">
+      <button type="button" class="sp-nav-close"><img src="./assets/img/button-close.svg" alt=""></button>
+      <ul>
+        <li><a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank"><span class="locale" data-string="nav-about"></span></a></li>
+        <li><a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank"><span class="locale" data-string="nav-eco"></span></a></li>
+        <li><a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank"><span class="locale" data-string="nav-smart"></span></a></li>
+        <li><a href="./assets/pdf/Climate_Panel08.pdf" target="_blank"><span class="locale" data-string="nav-climate"></span></a></li>
+        <li><a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank"><span class="locale" data-string="nav-contact"></span></a></li>
+        <li class="lang-list">
+          <button type="button" class="lang-en">EN</button>
+          <button type="button" class="lang-zh-hk">繁</button>
+          <button type="button" class="lang-zh-cn">简</button>
+        </li>
+      </ul>
+    </dialog>
   </nav>
 </header>
 
@@ -39,50 +57,70 @@
   <div class="booth-view-container">
     <div class="booth-view active">
       <img src="./assets/img/booth-00.png" alt="">
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 21%; --y: 47%; --s: 1.50;">Smart Technology</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 50%; --y: 50%; --s: 1.75;">Green Corner</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 74%; --y: 53%; --s: 1.25;">Climate Change</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 16%; --y: 72%; --s: 1.75;">Reception<br>Contact us</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 82%; --y: 46%; --s: 1.75;">About CEDD<br>YouTube</button>
+      <a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank" class="link-bubble" style="--x: 21%; --y: 47%; --s: 1.50;"><span class="locale" data-string="bubble-smart"></span></a>
+      <a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank" class="link-bubble" style="--x: 50%; --y: 50%; --s: 1.75;"><span class="locale" data-string="bubble-eco"></span></a>
+      <a href="./assets/pdf/Climate_Panel08.pdf" target="_blank" class="link-bubble" style="--x: 74%; --y: 46%; --s: 1.25;"><span class="locale" data-string="bubble-climate"></span></a>
+      <a href="https://www.youtube.com/watch?v=4iZ6DIinUqk" target="_blank" class="link-bubble" style="--x: 74%; --y: 55%; --s: 1.25;"><span class="locale" data-string="bubble-wave"></span></a>
+      <a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank" class="link-bubble" style="--x: 16%; --y: 72%; --s: 1.75;"><span class="locale" data-string="bubble-contact"></span></a>
+      <a href="https://www.youtube.com/watch?v=IZJ2uj5lflA" target="_blank" class="link-bubble" style="--x: 82%; --y: 46%; --s: 1.75;"><span class="locale" data-string="bubble-about"></span></a>
     </div>
     <div class="booth-view">
       <img src="./assets/img/booth-01.png" alt="">
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 30%; --y: 48%; --s: 1.25;">Smart Technology</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 41%; --y: 50%; --s: 1.75;">Green Corner</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 18%; --y: 69%; --s: 1.50;">Reception<br>Contact us</button>
+      <a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank" class="link-bubble" style="--x: 30%; --y: 48%; --s: 1.25;"><span class="locale" data-string="bubble-smart"></span></a>
+      <a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank" class="link-bubble" style="--x: 41%; --y: 50%; --s: 1.75;"><span class="locale" data-string="bubble-eco"></span></a>
+      <a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank" class="link-bubble" style="--x: 18%; --y: 69%; --s: 1.50;"><span class="locale" data-string="bubble-contact"></span></a>
     </div>
     <div class="booth-view">
       <img src="./assets/img/booth-02.png" alt="">
     </div>
     <div class="booth-view">
       <img src="./assets/img/booth-03.png" alt="">
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 74%; --y: 43%; --s: 1.25;">Smart Technology</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 50%; --y: 50%; --s: 1.75;">Green Corner</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 15%; --y: 48%; --s: 1.75;">Climate Change</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 25%; --y: 48%; --s: 1.25;">About CEDD<br>YouTube</button>
+      <a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank" class="link-bubble" style="--x: 78%; --y: 49%; --s: 1.25;"><span class="locale" data-string="bubble-smart"></span></a>
+      <a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank" class="link-bubble" style="--x: 50%; --y: 50%; --s: 1.75;"><span class="locale" data-string="bubble-eco"></span></a>
+      <a href="./assets/pdf/Climate_Panel08.pdf" target="_blank" class="link-bubble" style="--x: 15%; --y: 42%; --s: 1.75;"><span class="locale" data-string="bubble-climate"></span></a>
+      <a href="https://www.youtube.com/watch?v=4iZ6DIinUqk" target="_blank" class="link-bubble" style="--x: 18%; --y: 56%; --s: 1.75;"><span class="locale" data-string="bubble-wave"></span></a>
+      <a href="https://www.youtube.com/watch?v=IZJ2uj5lflA" target="_blank" class="link-bubble" style="--x: 25%; --y: 48%; --s: 1.25;"><span class="locale" data-string="bubble-about"></span></a>
     </div>
     <div class="booth-view">
       <img src="./assets/img/booth-04.png" alt="">
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 60%; --y: 42%; --s: 1.75;">Smart Technology</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 41%; --y: 50%; --s: 1.75;">Green Corner</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 23%; --y: 49%; --s: 1.25;">Climate Change</button>
+      <a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank" class="link-bubble" style="--x: 60%; --y: 42%; --s: 1.75;"><span class="locale" data-string="bubble-smart"></span></a>
+      <a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank" class="link-bubble" style="--x: 41%; --y: 50%; --s: 1.75;"><span class="locale" data-string="bubble-eco"></span></a>
+      <a href="./assets/pdf/Climate_Panel08.pdf" target="_blank" class="link-bubble" style="--x: 23%; --y: 44%; --s: 1.25;"><span class="locale" data-string="bubble-climate"></span></a>
+      <a href="https://www.youtube.com/watch?v=4iZ6DIinUqk" target="_blank" class="link-bubble" style="--x: 25%; --y: 55%; --s: 1.25;"><span class="locale" data-string="bubble-wave"></span></a>
     </div>
     <div class="booth-view">
       <img src="./assets/img/booth-05.png" alt="">
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 33%; --y: 44%; --s: 1.25;">Smart Technology</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 50%; --y: 50%; --s: 1.75;">Green Corner</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 24%; --y: 81%; --s: 1.75;">Reception<br>Contact us</button>
-      <button type="button" class="popout-show" data-pid="placeholder" style="--x: 75%; --y: 48%; --s: 1.50;">About CEDD<br>YouTube</button>
+      <a href="./assets/pdf/SmartTech_Panel02.03AB.05.06.pdf" target="_blank" class="link-bubble" style="--x: 33%; --y: 44%; --s: 1.25;"><span class="locale" data-string="bubble-smart"></span></a>
+      <a href="./assets/pdf/Eco-Design_Panel01.04AB.07.pdf" target="_blank" class="link-bubble" style="--x: 50%; --y: 50%; --s: 1.75;"><span class="locale" data-string="bubble-eco"></span></a>
+      <a href="https://www.cedd.gov.hk/eng/home/index.html" target="_blank" class="link-bubble" style="--x: 24%; --y: 81%; --s: 1.75;"><span class="locale" data-string="bubble-contact"></span></a>
+      <a href="https://www.youtube.com/watch?v=IZJ2uj5lflA" target="_blank" class="link-bubble" style="--x: 75%; --y: 48%; --s: 1.50;"><span class="locale" data-string="bubble-about"></span></a>
     </div>
   </div>
   <div class="pc-only">
-    <button type="button" class="scroll-button">Scroll</button>
+    <button type="button" class="pc-scroll-button">Scroll</button>
   </div>
-  <dialog class="popout" data-pid="placeholder">
-    <video src="" width="960" height="540" style="background-color: white;"></video> <!-- video placeholder -->
-    <button type="button" class="popout-hide"><img src="./assets/img/button-close.svg" alt=""></button>
-  </dialog>
+  <div class="sp-swipe-indicator-container sp-only">
+    <span>Swipe to know more</span>
+    <div class="arrows">
+      <img src="./assets/img/ui-arrow-left.svg" alt="">
+      <img src="./assets/img/ui-arrow-right.svg" alt="">
+    </div>
+    <div class="sp-swipe-indicator">
+      <div class="belt"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="circle"></div>
+    </div>
+  </div>
 </main>
+
+<footer>
+  <span class="copy">Copyright © 2023 Civil Engineering and Development Department. All Rights Reserved.</span>
+</footer>
 
 </body>
 
